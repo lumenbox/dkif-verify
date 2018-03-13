@@ -1,0 +1,4 @@
+dnspython
+toml
+ed25519
+Flask
