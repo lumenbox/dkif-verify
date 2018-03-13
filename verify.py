@@ -170,7 +170,7 @@ def validateSignature(response, keys):
   return answer
 
 # endpoint: validate a domain
-@app.route("/<domain>/")
+@app.route("/<domain>")
 def verifyDomain(domain):
   info = getFederationInfo(domain)
   info['keys'] = getTXT(domain)
