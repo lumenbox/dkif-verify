@@ -1,6 +1,6 @@
 Simple DKIF verification service
 =======================================================
-dkif-verify is simple API which can be used to do a DKIF verificaiton
+dkif-verify is simple HTTP service which can be used to do a DKIF verificaiton
 
 ## Docker
 You can build your own Docker image (Dockerfile is in the repo) or use our image form dockerhub: lumenbox/dkif-verify:latest
@@ -8,6 +8,7 @@ You can build your own Docker image (Dockerfile is in the repo) or use our image
 ## Example calls
 
 ### Gather informatio abour a domain
+```
 $ curl http://<hostname>/lumenbox.org
 {
   "control": "*", 
@@ -18,8 +19,9 @@ $ curl http://<hostname>/lumenbox.org
   "toml": "FEDERATION_SERVER=\"https://lumenbox.org/federation\"\n", 
   "url": "https://lumenbox.org/federation"
 }
-
+```
 ### Verify signature and provide information about the process
+```
 $ curl http://<hostname>/donation*lumenbox.org
 {
   "control": "*", 
@@ -39,4 +41,4 @@ $ curl http://<hostname>/donation*lumenbox.org
     "signed": "GAI55SVFTWSRNRFQGPUD264OF6UDD2O3MGUBDZWFR2GRJ3WOCTFUUMLP"
   }
 }
-
+```
