@@ -40,9 +40,9 @@ class Memo(object):
         self._memo_type = memo_type
         self._memo_type_dict = {None: {'type': Xdr.const.MEMO_NONE},
                                 '': {'type': Xdr.const.MEMO_NONE},
-                                'id': {'type': Xdr.const.MEMO_ID, 'id': self._memo},
-                                'text': {'type': Xdr.const.MEMO_TEXT, 'text': self._memo},
-                                'hash': {'type': Xdr.const.MEMO_HASH, 'hash': self._memo}}
+                                'MEMO_ID': {'type': Xdr.const.MEMO_ID, 'id': self._memo},
+                                'MEMO_TEXT': {'type': Xdr.const.MEMO_TEXT, 'text': self._memo},
+                                'MEMO_HASH': {'type': Xdr.const.MEMO_HASH, 'hash': self._memo}}
 
     def __str__(self):
         return 'memo_type: %s memo: %s' % (self._memo_type, self._memo)
@@ -53,12 +53,12 @@ class Memo(object):
             memo_dict = self._memo_type_dict[self._memo_type]
         except KeyError:
             raise ValueError(
-                'memo_type is %s but must be one of the following: %s' % (self._memo_type_dict.keys(), self._memo_type))
+                'memo_type is %s but must be one of the following: %s' % (self._memo_type, self._memo_type_dict.keys()))
         if memo_dict['type'] == Xdr.const.MEMO_ID:
             try:
                 memo_dict['id'] = int(memo_dict['id'])
             except ValueError:
-                ValueError('memo_type is id but "%s" memo cannot be converted to integer' % self._memo)
+                raise ValueError('memo_type is id but "%s" memo cannot be converted to integer' % self._memo)
         ret = Xdr.types.Memo(**memo_dict)
         return ret
 
